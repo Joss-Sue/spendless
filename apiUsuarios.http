@@ -20,13 +20,13 @@ DELETE http://localhost:1234/transacciones/6730e884d2a7e5bdc91a51bd
 GET http://localhost:1234/usuarios
 
 ### Crear una película con POST
-POST http://localhost:1234/transacciones
+POST http://localhost:1234/usuarios
 Content-Type: application/json
 
 {
   "nombre": "Josue",
-  "correo": 1,
-  "contrasena": "12345"
+  "correo": "josue@test.com",
+  "contrasena": "123456"
 }
 
 ### Actualizar una película
