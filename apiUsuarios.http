@@ -24,10 +24,9 @@ POST http://localhost:1234/transacciones
 Content-Type: application/json
 
 {
-  "usuario_id": "67301d67c4e28e2952f30712",
-  "monto": 999,
-  "tipo": "ingreso",
-  "descripcion": "asdasd"
+  "nombre": "Josue",
+  "correo": 1,
+  "contrasena": "12345"
 }
 
 ### Actualizar una película
@@ -35,5 +34,5 @@ PATCH http://localhost:1234/transacciones/6730593dff92c853a5b06859
 Content-Type: application/json
 
 {
-  "monto": 1
+  "nombre": 1
 }
