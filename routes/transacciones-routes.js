@@ -1,0 +1,14 @@
+import { Router } from 'express'
+
+import { TransaccionesController } from '../controllers/transacciones-controller.js'
+
+export const transaccionesRouter = Router()
+
+transaccionesRouter.get('/type/balance/:id/:type', TransaccionesController.getBalanceType)
+transaccionesRouter.get('/all/:id/:type', TransaccionesController.getAll)
+transaccionesRouter.get('/balance/:id', TransaccionesController.getBalance)
+transaccionesRouter.post('/', TransaccionesController.create)
+
+transaccionesRouter.get('/:id', TransaccionesController.getById)
+transaccionesRouter.delete('/:id', TransaccionesController.delete)
+transaccionesRouter.patch('/:id', TransaccionesController.update)
