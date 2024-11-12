@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import { TransaccionesController } from '../controllers/transacciones-controller.js'
+import { TransaccionesController } from '../api/transacciones-controller.js'
 
 export const transaccionesRouter = Router()
 
