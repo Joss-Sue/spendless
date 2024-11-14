@@ -27,4 +27,9 @@ export class UsuariosModel {
     const result = await Usuarios.findByIdAndUpdate(id, { $set: input }, { new: true })
     return result || false
   }
+
+  static async matchCorreo ({ email, password }) {
+    const usuario = await Usuarios.findOne({ correo: email, contrasena: password, estado: 1 })
+    return usuario || false
+  }
 }

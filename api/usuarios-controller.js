@@ -42,4 +42,13 @@ export class UsuariosController {
     const updatedUsuario = await UsuariosModel.update({ id, input: result.data })
     return res.json(updatedUsuario)
   }
+
+  static async matchCorreo (req, res) {
+    const { email, password } = req.query
+    const idUser = await UsuariosModel.matchCorreo({ email, password })
+    if (idUser === false) {
+      return res.status(204).json({ message: 'Ningun usuario coincide' })
+    }
+    return res.json(idUser)
+  }
 }

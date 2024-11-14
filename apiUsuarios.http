@@ -1,17 +1,11 @@
-###recuperar total de gastado o ingresado
-  http://localhost:1234/transacciones/type/balance/67301d67c4e28e2952f30712/ingreso
-
-###recuperar transacciones por tipo o todas
-http://localhost:1234/transacciones/all/67301d67c4e28e2952f30712/ingreso
-
-### Recuperar total ahorradocon id de usuario
-GET http://localhost:1234/transacciones/balance/67301d67c4e28e2952f30712
+### Recuperar id de usuario
+GET http://localhost:1234/sesion/login/?email=prueba@test.com&password=123456
 
 ### Recuperar una transaccion especifico con id
 GET http://localhost:1234/transacciones/67305ec92d064f7a9bd5fdcf
 
 ### Recuperar una película por id
-GET http://localhost:1234/usuarios/67301d67c4e28e2952f30712
+GET http://localhost:1234/usuarios/
 
 ### Borrado logico una película por id
 DELETE http://localhost:1234/transacciones/6730e884d2a7e5bdc91a51bd
