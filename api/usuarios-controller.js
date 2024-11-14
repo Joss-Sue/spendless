@@ -20,7 +20,7 @@ export class UsuariosController {
     // 422 Unprocessable Entity
       return res.status(400).json({ error: JSON.parse(result.error.message) })
     }
-    const newObject = await UsuariosModel.create({ input: result.data })
+    const newObject = await UsuariosModel.create({ input: req.body })
     res.status(201).json(newObject)
   }
 
@@ -47,8 +47,8 @@ export class UsuariosController {
     const { email, password } = req.query
     const idUser = await UsuariosModel.matchCorreo({ email, password })
     if (idUser === false) {
-      return res.status(204).json({ message: 'Ningun usuario coincide' })
+      return res.status(404).json({ sucess: false, message: 'Ningun usuario coincide' })
     }
-    return res.json(idUser)
+    return res.json({ id: idUser._id, sucess: true })
   }
 }

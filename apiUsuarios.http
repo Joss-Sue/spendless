@@ -1,32 +1,30 @@
-### Recuperar id de usuario
-GET http://localhost:1234/sesion/login/?email=prueba@test.com&password=123456
+### Recuperar login id de usuario
+GET http://localhost:1234/sesion/login/?email=josueq2@test.com&password=123456
 
-### Recuperar una transaccion especifico con id
-GET http://localhost:1234/transacciones/67305ec92d064f7a9bd5fdcf
+### Recuperar un usuario con id
+GET http://localhost:1234/usuarios/6735b2d853391218992745e5
 
-### Recuperar una película por id
+### Recuperar todos los usuarios
 GET http://localhost:1234/usuarios/
 
-### Borrado logico una película por id
-DELETE http://localhost:1234/transacciones/6730e884d2a7e5bdc91a51bd
+### Borrado logico un usuario por id
+DELETE http://localhost:1234/usuarios/6735b29b53391218992745e3
 
-### Recuperar todas las películas por un género
-GET http://localhost:1234/usuarios
-
-### Crear una película con POST
+### Crear un usuario
 POST http://localhost:1234/usuarios
 Content-Type: application/json
 
 {
-  "nombre": "Josue",
-  "correo": "josue@test.com",
-  "contrasena": "123456"
+  "nombre": "UsuariocImagen",
+  "correo": "imagen@test.com",
+  "contrasena": "123456",
+  "imagen": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAY1BMVEX///8AAADPz8+WlpZLS0v7+/vu7u5vb29TU1PDw8Pz8/N8fHyCgoITExMzMzOsrKyPj4+6urrU1NTo6Oizs7NCQkJkZGQoKCilpaUtLS05OTmenp7IyMiFhYVaWlpqamoLCwt+baPtAAACfUlEQVR4nO3di27CMAyF4TBWoAxYx2UX2Abv/5RbpSE2aXLSJpJl5/+ewEdQSlLXCQEAAAAAAAAAAAAAAAAA/Fu2H5/3dnyu2uWgfLv5xJ75Ljlf02kXO1LXpAWcHbQrHe0wSwm4XGvXmWGdcDU2G+0qs2ziX9SVdo2ZVrGAW+0Ks20jCZ+1C8z2LAecaddXgPx7+qhdXgGPYsKzdnkFnMWEL9rlFfAiJrxol1eCmFC7uCLEhJb/sV2txYT32uUVcBATWl03/daJCd+1yyvgXUzo4Mf0IgcMr9oFZnuNJGzetCvM9BZdIFq/EiNXof3v6SkeMISpdpUZpikBQ3jSrnO0p7SA3+tgixvCk8k8aS/xx2561K53oGOXvuV9Dbm9s2M7OB4AAAAAAAAAALBj2Z6mdpwGvm4Rmv1C+1nSYIt94rsIvdZmN/umTQ34oF3qaA9pAe19QW8WKQFtPuG+mscDWu/0lru8g4dm/Vi7gvVXZqIvzTTa9RUg3xbtNgvdyG1Ddm+FN/JN0Vqf0H82YkL7LcKxJmHt6oqo/DO0uaj46ygm9P9b6v9+6P8/jf//pRWsLfyvDytY41ewT2P5ppi411bBfmkFe949588tAAAAAAAAAACAJc7nRO06aw/Yhs36mtkcen1Onte21y51tMSZe+7nJp60q8ySMPvS/fzSxvrc+egMWtvzWXuxOcLa9RXg+yrsyVei/5nsdg+zupHn6vs/G0G7uiIqT2j9ft+Tz5mxuWz6Sz4ryHqXd0/u9Lbfqh9t1nd/7loFZ+eZf2kmev5hBWdY+j+HtIKzZCs4Dzj4P9O5Z+1c7g9euAAAAAAAAAAAAAAAAABQhS+ZyFZoP93BCgAAAABJRU5ErkJggg=="
 }
 
 ### Actualizar una película
-PATCH http://localhost:1234/transacciones/6730593dff92c853a5b06859
+PATCH http://localhost:1234/usuarios/6735b41d0bbafcfce6fefcb6
 Content-Type: application/json
 
 {
-  "nombre": 1
+  "nombre": "edit name"
 }

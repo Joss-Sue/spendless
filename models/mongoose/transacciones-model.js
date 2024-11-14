@@ -38,13 +38,30 @@ export class TransaccionesModel {
 
   static async getBalance (id) {
     try {
-      console.log(id)
+      const result = await Transacciones.aggregate([
+        { $match: { estado: 1, usuario_id: new mongoose.Types.ObjectId(id) } }, // Filtra documentos donde estado = 1 y usuario_id coincide
+        {
+          $group: {
+            _id: null,
+            totalIngresos: {
+              $sum: { $cond: [{ $eq: ['$tipo', 'ingreso'] }, '$monto', 0] } // Suma solo los montos de tipo ingreso
+            },
+            totalGastos: {
+              $sum: { $cond: [{ $eq: ['$tipo', 'gasto'] }, '$monto', 0] } // Suma solo los montos de tipo gasto
+            }
+          }
+        },
+        {
+          $project: {
+            balance: { $subtract: ['$totalIngresos', '$totalGastos'] } // Resta totalGastos de totalIngresos
+          }
+        }
+      ])
 
-      const result = await Transacciones.aggregate([{ $match: { estado: 1, usuario_id: new mongoose.Types.ObjectId(id) } }, // Filtra documentos donde estado = 1 },
-        { $group: { _id: null, totalMonto: { $sum: '$monto' } } }])
-      return result[0].totalMonto || false
+      return result[0]?.balance || false // Devuelve el balance calculado o false si no hay resultado
     } catch (error) {
-      return console.error('Error al obtener la sumatoria del monto:', error)
+      console.error('Error al obtener el balance del monto:', error)
+      return false
     }
   }
 

@@ -4,6 +4,7 @@ const usuarioSchema = new mongoose.Schema({
   nombre: { type: String, required: true },
   correo: { type: String, required: true },
   contrasena: { type: String, required: true },
+  imagen: { type: String },
   fecha_creacion: { type: Date, default: Date.now },
   estado: { type: Number, enum: [0, 1], default: 1 }
 })
