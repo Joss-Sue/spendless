@@ -71,9 +71,6 @@ export class UsuariosController {
   }
 
   static async matchCorreo (req, res) {
-    // console.log(req.body)
-    // console.log(req.body.password)
-
     const usuario = await UsuariosModel.getOne(req.body.email)
     if (!usuario) {
       return res.status(403).json({ message: 'User not found' })
@@ -83,6 +80,6 @@ export class UsuariosController {
     if (!passwordMatch) {
       return res.status(401).json({ success: false, message: 'Contraseña incorrecta' })
     }
-    return res.json({ id: usuario._id, success: true })
+    return res.json({ id: usuario._id, nombre: usuario.nombre, imagen: usuario.imagen, success: true })
   }
 }

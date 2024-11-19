@@ -9,7 +9,7 @@ export class UsuariosModel {
   }
 
   static async getOne (correoParam) {
-    return await Usuarios.findOne({ correo: correoParam })
+    return await Usuarios.findOne({ correo: correoParam, estado: 1 })
   }
 
   static async getById ({ id }) {
@@ -30,10 +30,5 @@ export class UsuariosModel {
   static async update ({ id, input }) {
     const result = await Usuarios.findByIdAndUpdate(id, { $set: input }, { new: true })
     return result || false
-  }
-
-  static async matchCorreo ({ email, password }) {
-    const usuario = await Usuarios.findOne({ correo: email, contrasena: password, estado: 1 })
-    return usuario || false
   }
 }
