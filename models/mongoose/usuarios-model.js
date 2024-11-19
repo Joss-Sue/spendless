@@ -8,6 +8,10 @@ export class UsuariosModel {
     return await Usuarios.find({ estado: 1 })
   }
 
+  static async getOne (correoParam) {
+    return await Usuarios.findOne({ correo: correoParam })
+  }
+
   static async getById ({ id }) {
     return await Usuarios.findById(id)
   }

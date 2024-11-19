@@ -1,5 +1,6 @@
 import { UsuariosModel } from '../models/mongoose/usuarios-model.js'
 import { validate, validatePartial } from './schemas/usuarios-validaciones.js'
+import bcrypt from 'bcrypt'
 
 export class UsuariosController {
   static async getAll (req, res) {
@@ -20,7 +21,9 @@ export class UsuariosController {
     // 422 Unprocessable Entity
       return res.status(400).json({ error: JSON.parse(result.error.message) })
     }
-    const newObject = await UsuariosModel.create({ input: req.body })
+    const contraEncriptada = await bcrypt.hash(req.body.contrasena, 2)
+    const dataResult = { ...req.body, contrasena: contraEncriptada }
+    const newObject = await UsuariosModel.create({ input: dataResult })
     res.status(201).json(newObject)
   }
 
@@ -38,17 +41,31 @@ export class UsuariosController {
     if (!result.success) {
       return res.status(400).json({ error: JSON.parse(result.error.message) })
     }
+
+    let dataResult = req.body
+
+    if (req.body.contrasena) {
+      const contraEncriptada = await bcrypt.hash(req.body.contrasena, 2)
+      dataResult = { ...req.body, contrasena: contraEncriptada }
+    }
     const { id } = req.params
-    const updatedUsuario = await UsuariosModel.update({ id, input: result.data })
+    const updatedUsuario = await UsuariosModel.update({ id, input: dataResult })
     return res.json(updatedUsuario)
   }
 
   static async matchCorreo (req, res) {
-    const { email, password } = req.query
-    const idUser = await UsuariosModel.matchCorreo({ email, password })
-    if (idUser === false) {
-      return res.status(404).json({ sucess: false, message: 'Ningun usuario coincide' })
+    // console.log(req.body)
+    // console.log(req.body.password)
+
+    const usuario = await UsuariosModel.getOne(req.body.email)
+    if (!usuario) {
+      return res.status(403).json({ message: 'User not found' })
     }
-    return res.json({ id: idUser._id, sucess: true })
+
+    const passwordMatch = await bcrypt.compare(req.body.password, usuario.contrasena)
+    if (!passwordMatch) {
+      return res.status(401).json({ success: false, message: 'Contraseña incorrecta' })
+    }
+    return res.json({ id: usuario._id, success: true })
   }
 }
