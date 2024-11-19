@@ -16,15 +16,32 @@ export class UsuariosController {
   }
 
   static async create (req, res) {
-    const result = validate(req.body)
-    if (!result.success) {
-    // 422 Unprocessable Entity
-      return res.status(400).json({ error: JSON.parse(result.error.message) })
+    try {
+      const result = validate(req.body)
+      if (!result.success) {
+        // 400 Bad Request
+        return res.status(400).json({ error: JSON.parse(result.error.message) })
+      }
+
+      // Encriptar contraseña
+      const contraEncriptada = await bcrypt.hash(req.body.contrasena, 2)
+      const dataResult = { ...req.body, contrasena: contraEncriptada }
+
+      // Intentar crear el usuario
+      const newObject = await UsuariosModel.create({ input: dataResult })
+
+      // 201 Created
+      res.status(201).json(newObject)
+    } catch (error) {
+      // Manejo de errores de duplicados (MongoDB: código 11000)
+      if (error.code === 11000) {
+        return res.status(409).json({ error: 'El correo ya está en uso' })
+      }
+
+      // Manejo de otros errores
+      console.error('Error al crear el usuario:', error)
+      res.status(500).json({ error: 'Error interno del servidor' })
     }
-    const contraEncriptada = await bcrypt.hash(req.body.contrasena, 2)
-    const dataResult = { ...req.body, contrasena: contraEncriptada }
-    const newObject = await UsuariosModel.create({ input: dataResult })
-    res.status(201).json(newObject)
   }
 
   static async delete (req, res) {
