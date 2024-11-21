@@ -6,7 +6,7 @@ import { sesionRouter } from './routes/sesion-routes.js'
 
 const app = express()
 app.use(json())
-// app.use(corsMiddleware())
+app.use(corsMiddleware())
 app.disable('x-powered-by') // deshabilitar el header X-Powered-By: Express
 app.get('/', (req, res) => res.send('Express on Vercel'))
 app.use('/usuarios', usuariosRouter)
