@@ -80,6 +80,6 @@ export class UsuariosController {
     if (!passwordMatch) {
       return res.status(401).json({ success: false, message: 'Contraseña incorrecta' })
     }
-    return res.json({ id: usuario._id, nombre: usuario.nombre, imagen: usuario.imagen, success: true })
+    return res.json({ _id: usuario._id, nombre: usuario.nombre, imagen: usuario.imagen, success: true })
   }
 }
