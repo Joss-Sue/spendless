@@ -18,6 +18,14 @@ export class TransaccionesController {
     res.status(404).json({ message: 'object not found' })
   }
 
+  static async getByIdLastest (req, res) {
+    const { id } = (req.body)
+    console.log(id)
+    const transacciones = await TransaccionesModel.getByIdLastest(id)
+    if (transacciones) return res.json(transacciones)
+    return res.status(400).json({ message: 'object not found' })
+  }
+
   static async getBalance (req, res) {
     const { id } = req.params
     console.log(id)

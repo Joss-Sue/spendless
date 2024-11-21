@@ -1,8 +1,8 @@
 ###recuperar total de gastado o ingresado
   http://localhost:1234/transacciones/type/balance/67301d67c4e28e2952f30712/ingreso
 
-###recuperar transacciones por tipo o todas
-http://localhost:1234/transacciones/all/67301d67c4e28e2952f30712/ingreso
+###recuperar transacciones por tipo o todas[ingreso,gasto, mixed (todas)]
+http://localhost:1234/transacciones/all/67301d67c4e28e2952f30712/mixed
 
 ### Recuperar total ahorradocon id de usuario
 GET http://localhost:1234/transacciones/balance/67301d67c4e28e2952f30712
@@ -25,7 +25,7 @@ Content-Type: application/json
 
 {
   "usuario_id": "67301d67c4e28e2952f30712",
-  "monto": 999,
+  "monto": 1005,
   "tipo": "ingreso",
   "descripcion": "asdasd"
 }
@@ -36,4 +36,12 @@ Content-Type: application/json
 
 {
   "monto": 1
+}
+
+### lastest transac
+POST http://localhost:1234/transacciones/last
+Content-Type: application/json
+
+{
+  "id": "67301d67c4e28e2952f30712"
 }

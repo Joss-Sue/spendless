@@ -6,18 +6,21 @@ await connectDB()
 
 export class TransaccionesModel {
   static async getAll (id, type) {
-    console.log(id, type)
     if (type === 'mixed') {
-      return await Transacciones.find({ estado: 1, usuario_id: id })
+      return await Transacciones.find({ estado: 1, usuario_id: id }).sort({ fecha_transac: -1 })
     } else {
-      return await Transacciones.find({ estado: 1, usuario_id: id, tipo: type })
+      return await Transacciones.find({ estado: 1, usuario_id: id, tipo: type }).sort({ fecha_transac: -1 })
     }
   }
 
   static async getById ({ id }) {
-    console.log(id)
-
     return await Transacciones.find({ estado: 1, _id: id })
+  }
+
+  static async getByIdLastest (id) {
+    return await Transacciones.find({ estado: 1, usuario_id: id })
+      .sort({ fecha_transac: -1 })
+      .limit(5)
   }
 
   static async create ({ input }) {
