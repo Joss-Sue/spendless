@@ -5,7 +5,9 @@ import { sesionRouter } from './routes/sesion-routes.js'
 // import { corsMiddleware } from './middleware/cors.js'
 
 const app = express()
-app.use(json({ limit: '10mb' }));
+app.use(express.json({ limit: '10mb' }))
+//app.use(express.urlencoded({limit: '50mb'}))
+
 //app.use(corsMiddleware())
 app.disable('x-powered-by') // deshabilitar el header X-Powered-By: Express
 app.get('/', (req, res) => res.send('Express on Vercel'))
