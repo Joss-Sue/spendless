@@ -9,7 +9,11 @@ const usuarioSchema = z.object({
     invalid_type_error: 'Email must be a string',
     required_error: 'Email is required.'
   }).min(1),
-  contrasena: z.string().min(6)
+  contrasena: z.string().min(6),
+  alias: z.string(),
+  contrasena: z.string().min(6),
+  direccion :z.string().min(0),
+  telefono :z.string().min(0)
 })
 
 export function validate (input) {

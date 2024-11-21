@@ -9,7 +9,8 @@ const transaccionesSchema = z.object({
     .positive('La cantidad debe ser un número positivo')
     .max(999999999, 'La cantidad máxima permitida es 999,999,999'), // Puedes ajustar el máximo si es necesario
   tipo: z.enum(['ingreso', 'gasto']),
-  descripcion: z.string()
+  descripcion: z.string(),
+  imagen: z.string()
 })
 
 export function validate (input) {
