@@ -2,9 +2,17 @@ import express, { json } from 'express' // require -> commonJS
 import { usuariosRouter } from './routes/usuarios-routes.js'
 import { transaccionesRouter } from './routes/transacciones-routes.js'
 import { sesionRouter } from './routes/sesion-routes.js'
+import cors from 'cors'
 // import { corsMiddleware } from './middleware/cors.js'
 
+const corsMiddleware = cors({
+  origin: '*', // Permitir cualquier origen
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
+  credentials: true, // Si necesitas permitir cookies o credenciales
+});
+
 const app = express()
+app.use(corsMiddleware);
 app.use(express.json({ limit: '10mb' }))
 //app.use(express.urlencoded({limit: '50mb'}))
 
