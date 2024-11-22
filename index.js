@@ -1,4 +1,4 @@
-import express, { json } from 'express' // require -> commonJS
+import express from 'express' // require -> commonJS
 import { usuariosRouter } from './routes/usuarios-routes.js'
 import { transaccionesRouter } from './routes/transacciones-routes.js'
 import { sesionRouter } from './routes/sesion-routes.js'
@@ -6,9 +6,9 @@ import { sesionRouter } from './routes/sesion-routes.js'
 
 const app = express()
 app.use(express.json({ limit: '10mb' }))
-//app.use(express.urlencoded({limit: '50mb'}))
+// app.use(express.urlencoded({limit: '50mb'}))
 
-//app.use(corsMiddleware())
+// app.use(corsMiddleware())
 app.disable('x-powered-by') // deshabilitar el header X-Powered-By: Express
 app.get('/', (req, res) => res.send('Express on Vercel'))
 app.use('/usuarios', usuariosRouter)
