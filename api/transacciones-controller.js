@@ -67,7 +67,8 @@ export class TransaccionesController {
       return res.status(400).json({ error: JSON.parse(result.error.message) })
     }
     const { id } = req.params
-    const updatedUsuario = await TransaccionesModel.update({ id, input: result.data })
+    console.log(req.body)
+    const updatedUsuario = await TransaccionesModel.update({ id, input: req.body })
     return res.json(updatedUsuario)
   }
 }
