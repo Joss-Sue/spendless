@@ -6,18 +6,16 @@ import cors from 'cors'
 // import { corsMiddleware } from './middleware/cors.js'
 
 const corsMiddleware = cors({
-  origin: '*', // Permitir cualquier origen
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
-  credentials: true, // Si necesitas permitir cookies o credenciales
-});
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true
+})
 
 const app = express()
-app.use(corsMiddleware);
+app.use(corsMiddleware)
 app.use(express.json({ limit: '10mb' }))
-// app.use(express.urlencoded({limit: '50mb'}))
 
-// app.use(corsMiddleware())
-app.disable('x-powered-by') // deshabilitar el header X-Powered-By: Express
+app.disable('x-powered-by')
 app.get('/', (req, res) => res.send('Express on Vercel'))
 app.use('/usuarios', usuariosRouter)
 app.use('/transacciones', transaccionesRouter)
