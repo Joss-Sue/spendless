@@ -12,8 +12,7 @@ const usuarioSchema = z.object({
   contrasena: z.string().min(6),
   alias: z.string(),
   direccion: z.string().min(0),
-  telefono: z.string().min(0),
-  imagen: z.optional
+  telefono: z.string().min(0)
 })
 
 export function validate (input) {

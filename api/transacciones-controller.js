@@ -48,7 +48,7 @@ export class TransaccionesController {
     // 422 Unprocessable Entity
       return res.status(400).json({ error: JSON.parse(result.error.message) })
     }
-    const newObject = await TransaccionesModel.create({ input: result.data })
+    const newObject = await TransaccionesModel.create({ input: req.body })
     res.status(201).json(newObject)
   }
 

@@ -24,10 +24,14 @@ POST http://localhost:1234/transacciones
 Content-Type: application/json
 
 {
-  "usuario_id": "67301d67c4e28e2952f30712",
-  "monto": 1005,
+  "usuario_id": "6740338c619e791515750c3a",
+  "monto": 5000,
   "tipo": "ingreso",
-  "descripcion": "asdasd"
+  "descripcion": "Pago poooor servicios",
+  "imagen": [
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...",
+    "data:image/jpeg;base64,aBcdEfGhIjKlMnOpQrSt..."
+  ]
 }
 
 ### Actualizar una película
