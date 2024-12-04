@@ -12,4 +12,5 @@ transaccionesRouter.post('/', TransaccionesController.create)
 
 transaccionesRouter.get('/:id', TransaccionesController.getById)
 transaccionesRouter.delete('/:id', TransaccionesController.delete)
-transaccionesRouter.patch('/:id', TransaccionesController.update)
+transaccionesRouter.put('/:id', TransaccionesController.update)
+transaccionesRouter.patch('/', TransaccionesController.updateSync)

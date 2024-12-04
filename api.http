@@ -1,17 +1,17 @@
 ###recuperar total de gastado o ingresado
-  http://localhost:1234/transacciones/type/balance/67301d67c4e28e2952f30712/ingreso
+GET http://localhost:1234/transacciones/type/balance/67301d67c4e28e2952f30712/ingreso
 
 ###recuperar transacciones por tipo o todas[ingreso,gasto, mixed (todas)]
-http://localhost:1234/transacciones/all/67301d67c4e28e2952f30712/mixed
+GET http://localhost:1234/transacciones/all/6740338c619e791515750c3a/mixed
 
 ### Recuperar total ahorradocon id de usuario
 GET http://localhost:1234/transacciones/balance/67301d67c4e28e2952f30712
 
 ### Recuperar una transaccion especifico con id
-GET http://localhost:1234/transacciones/67305ec92d064f7a9bd5fdcf
+GET http://localhost:1234/transacciones/674fe2dad1a2deaa705b76dc
 
 ### Borrado logico una transaccion por id
-DELETE http://localhost:1234/transacciones/6730e884d2a7e5bdc91a51bd
+DELETE http://localhost:1234/transacciones/674fe2dad1a2deaa705b76dc
 
 ### Recuperar todas las películas por un género
 GET http://localhost:1234/usuarios
@@ -22,9 +22,9 @@ Content-Type: application/json
 
 {
   "usuario_id": "6740338c619e791515750c3a",
-  "monto": 5000,
+  "monto": 9999,
   "tipo": "ingreso",
-  "descripcion": "Pago poooor servicios",
+  "descripcion": "Pago por servicios",
   "imagen": [
     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...",
     "data:image/jpeg;base64,aBcdEfGhIjKlMnOpQrSt..."
@@ -32,7 +32,7 @@ Content-Type: application/json
 }
 
 ### Actualizar una transaccion
-PATCH http://localhost:1234/transacciones/674bf8fc328f59506b697a7e
+PUT http://localhost:1234/transacciones/674fe2dad1a2deaa705b76dc
 Content-Type: application/json
 
 {
@@ -43,6 +43,14 @@ Content-Type: application/json
     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...",
     "data:image/jpeg;base64,aBcdEfGhIjKlMnOpQrSt..."
   ]
+}
+
+### Sincronizar mandar cadena de ids
+PATCH http://localhost:1234/transacciones/
+Content-Type: application/json
+
+{
+  "id": ["674fe2dad1a2deaa705b76dc", "674fe2c262a717b51355d6c8" ]
 }
 
 ### lastest transac

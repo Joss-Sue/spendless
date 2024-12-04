@@ -21,7 +21,8 @@ const transaccionesSchema = new mongoose.Schema({
   descripcion: { type: String },
   usuario_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Usuario' },
   imagen: { type: [String], default: [] },
-  estado: { type: Number, enum: [0, 1], default: 1 }
+  estado: { type: Number, enum: [0, 1], default: 0 },
+  activo: { type: Number, enum: [0, 1], default: 1 }
 })
 export const Transacciones = mongoose.model('Transacciones', transaccionesSchema)
 

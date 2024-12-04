@@ -4,15 +4,13 @@ import { validate, validatePartial } from './schemas/transacciones-validaciones.
 
 export class TransaccionesController {
   static async getAll (req, res) {
-    const { id, type } = req.params
-    console.log(id, type)
-    const transacciones = await TransaccionesModel.getAll(id, type)
+    const { id } = req.params
+    const transacciones = await TransaccionesModel.getAll(id)
     res.json(transacciones)
   }
 
   static async getById (req, res) {
     const { id } = req.params
-    console.log(id)
     const usuario = await TransaccionesModel.getById({ id })
     if (usuario) return res.json(usuario)
     res.status(404).json({ message: 'object not found' })
@@ -67,8 +65,17 @@ export class TransaccionesController {
       return res.status(400).json({ error: JSON.parse(result.error.message) })
     }
     const { id } = req.params
-    console.log(req.body)
     const updatedUsuario = await TransaccionesModel.update({ id, input: req.body })
     return res.json(updatedUsuario)
+  }
+
+  static async updateSync (req, res) {
+    const { id } = req.body
+    if (!id) {
+      return res.status(400).json({ error: 'id is required' })
+    }
+
+    const updatedUsuario = await TransaccionesModel.updateSync({ id })
+    return res.json({ success: updatedUsuario })
   }
 }
