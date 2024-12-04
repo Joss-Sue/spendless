@@ -5,15 +5,15 @@ import mongoose from 'mongoose'
 await connectDB()
 
 export class TransaccionesModel {
-  /* static async getAll (id, type) {
+  static async getAll (id, type) {
     if (type === 'mixed') {
       return await Transacciones.find({ activo: 1, usuario_id: id }).sort({ fecha_transac: -1 })
     } else {
       return await Transacciones.find({ activo: 1, usuario_id: id, tipo: type }).sort({ fecha_transac: -1 })
     }
-  } */
+  } 
 
-  static async getAll (id) {
+  /* static async getAll (id) {
     const transacciones = await Transacciones.find({ activo: 1, usuario_id: id })
       .sort({ fecha_transac: -1 })
 
@@ -25,7 +25,7 @@ export class TransaccionesModel {
         imagen // Sobrescribir el campo imagen
       }
     })
-  }
+  } */
 
   static async getById ({ id }) {
     return await Transacciones.find({ activo: 1, _id: id })
