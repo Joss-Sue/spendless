@@ -7,6 +7,7 @@ export class TransaccionesController {
     const { id, type } = req.params
     console.log(id, type)
     const transacciones = await TransaccionesModel.getAll(id, type)
+    res.json(transacciones)
   }
 
   static async getById (req, res) {
