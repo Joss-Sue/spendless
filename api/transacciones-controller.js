@@ -4,9 +4,9 @@ import { validate, validatePartial } from './schemas/transacciones-validaciones.
 
 export class TransaccionesController {
   static async getAll (req, res) {
-    const { id } = req.params
-    const transacciones = await TransaccionesModel.getAll(id)
-    res.json(transacciones)
+    const { id, type } = req.params
+    console.log(id, type)
+    const transacciones = await TransaccionesModel.getAll(id, type)
   }
 
   static async getById (req, res) {
